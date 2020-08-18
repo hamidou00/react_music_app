@@ -1,0 +1,642 @@
+[
+    {
+      "time": 0,
+      "note": "C5",
+      "velocity": 0.5
+    },
+    {
+      "time": 0,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 0,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 0,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 0,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 0,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 0,
+      "note": "D4",
+      "velocity": 0
+    },
+    {
+      "time": 0,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 1,
+      "note": "C5",
+      "velocity": 0.5
+    },
+    {
+      "time": 1,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 1,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 1,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 1,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 1,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 1,
+      "note": "D4",
+      "velocity": 0
+    },
+    {
+      "time": 1,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 2,
+      "note": "C5",
+      "velocity": 0.5
+    },
+    {
+      "time": 2,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 2,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 2,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 2,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 2,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 2,
+      "note": "D4",
+      "velocity": 0
+    },
+    {
+      "time": 2,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 3,
+      "note": "C5",
+      "velocity": 0
+    },
+    {
+      "time": 3,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 3,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 3,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 3,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 3,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 3,
+      "note": "D4",
+      "velocity": 0.5
+    },
+    {
+      "time": 3,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 4,
+      "note": "C5",
+      "velocity": 0
+    },
+    {
+      "time": 4,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 4,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 4,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 4,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 4,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 4,
+      "note": "D4",
+      "velocity": 0.5
+    },
+    {
+      "time": 4,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 5,
+      "note": "C5",
+      "velocity": 0
+    },
+    {
+      "time": 5,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 5,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 5,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 5,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 5,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 5,
+      "note": "D4",
+      "velocity": 0.5
+    },
+    {
+      "time": 5,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 6,
+      "note": "C5",
+      "velocity": 0
+    },
+    {
+      "time": 6,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 6,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 6,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 6,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 6,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 6,
+      "note": "D4",
+      "velocity": 0.5
+    },
+    {
+      "time": 6,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 7,
+      "note": "C5",
+      "velocity": 0.5
+    },
+    {
+      "time": 7,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 7,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 7,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 7,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 7,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 7,
+      "note": "D4",
+      "velocity": 0
+    },
+    {
+      "time": 7,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 8,
+      "note": "C5",
+      "velocity": 0.5
+    },
+    {
+      "time": 8,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 8,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 8,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 8,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 8,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 8,
+      "note": "D4",
+      "velocity": 0
+    },
+    {
+      "time": 8,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 9,
+      "note": "C5",
+      "velocity": 0.5
+    },
+    {
+      "time": 9,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 9,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 9,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 9,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 9,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 9,
+      "note": "D4",
+      "velocity": 0
+    },
+    {
+      "time": 9,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 10,
+      "note": "C5",
+      "velocity": 0.5
+    },
+    {
+      "time": 10,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 10,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 10,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 10,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 10,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 10,
+      "note": "D4",
+      "velocity": 0
+    },
+    {
+      "time": 10,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 11,
+      "note": "C5",
+      "velocity": 0
+    },
+    {
+      "time": 11,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 11,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 11,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 11,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 11,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 11,
+      "note": "D4",
+      "velocity": 0.5
+    },
+    {
+      "time": 11,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 12,
+      "note": "C5",
+      "velocity": 0
+    },
+    {
+      "time": 12,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 12,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 12,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 12,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 12,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 12,
+      "note": "D4",
+      "velocity": 0.5
+    },
+    {
+      "time": 12,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 13,
+      "note": "C5",
+      "velocity": 0
+    },
+    {
+      "time": 13,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 13,
+      "note": "A4",
+      "velocity": 0.5
+    },
+    {
+      "time": 13,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 13,
+      "note": "F4",
+      "velocity": 0.5
+    },
+    {
+      "time": 13,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 13,
+      "note": "D4",
+      "velocity": 0.5
+    },
+    {
+      "time": 13,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 14,
+      "note": "C5",
+      "velocity": 0
+    },
+    {
+      "time": 14,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 14,
+      "note": "A4",
+      "velocity": 0
+    },
+    {
+      "time": 14,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 14,
+      "note": "F4",
+      "velocity": 0
+    },
+    {
+      "time": 14,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 14,
+      "note": "D4",
+      "velocity": 0
+    },
+    {
+      "time": 14,
+      "note": "C4",
+      "velocity": 0
+    },
+    {
+      "time": 15,
+      "note": "C5",
+      "velocity": 0
+    },
+    {
+      "time": 15,
+      "note": "B4",
+      "velocity": 0
+    },
+    {
+      "time": 15,
+      "note": "A4",
+      "velocity": 0
+    },
+    {
+      "time": 15,
+      "note": "G4",
+      "velocity": 0
+    },
+    {
+      "time": 15,
+      "note": "F4",
+      "velocity": 0
+    },
+    {
+      "time": 15,
+      "note": "E4",
+      "velocity": 0
+    },
+    {
+      "time": 15,
+      "note": "D4",
+      "velocity": 0
+    },
+    {
+      "time": 15,
+      "note": "C4",
+      "velocity": 0
+    }
+  ]

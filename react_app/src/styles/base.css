@@ -182,9 +182,61 @@
     background: rgb(123, 141, 241);
 }
 
+.note2{
+    transition: ease 0.5;
+    height: 100px;
+    width: 150px;
+    background: greenyellow;
+}
+
 .note-active{
     transition: ease 0.5;
     height: 100px;
     width: 150px;
     background: rgb(189, 132, 255);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ############### SEQUENCER ################## */
+
+.sequencer {
+    width: 95%;
+    
+    margin: auto;
+    background: grey;
+    /* border: 1px solid black; */
+
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    background: gray;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.note_bloc {
+    height: 50px;
+    width: 50px;
+    background: red;
+    border: 1px solid;
+}
+
+.note_bloc_active {
+    height: 50px;
+    width: 50px;
+    background: yellow;
+    border: 1px solid;
 }

@@ -5,29 +5,13 @@ import StartAudioContext from "startaudiocontext";
 //const notes = ["C3", "Eb3", "G3", "Bb3"];
 const synth = new Tone.MembraneSynth().toMaster();
 const context = new AudioContext();
-const notes= [
-    [
-        {note:"C3", enabled: false}, {note:"Eb3", enabled: false}, {note:"G3", enabled:false}, {note:"Bb3", enabled: false}
-    ],
-    [
-        {note:"C3", enabled: false}, {note:"Eb3", enabled: false}, {note:"G3", enabled:false}, {note:"Bb3", enabled: false}
-    ],
-    [
-        {note:"C3", enabled: false}, {note:"Eb3", enabled: false}, {note:"G3", enabled:false}, {note:"Bb3", enabled: false}
-    ],
-    [
-        {note:"C3", enabled: false}, {note:"Eb3", enabled: false}, {note:"G3", enabled:false}, {note:"Bb3", enabled: false}
-    ],
-    [
-        {note:"C3", enabled: false}, {note:"Eb3", enabled: false}, {note:"G3", enabled:false}, {note:"Bb3", enabled: false}
-    ],
-]
+
 
 export default class testLoop extends React.Component {
 
     state = {
         synthSeq : synth,
-        notes: [{note:"C3", enabled: false}, {note:"Eb3", enabled: false}, {note:"G3", enabled:false}, {note:"Bb3", enabled: false}],
+        notes: [{note:"C4", enabled: false}, {note:"D4", enabled: false}, {note:"E4", enabled:false}, {note:"F4", enabled: false}],
         noteEnclenche: "",
         loopBeat : null,
         bassSynth : null
@@ -69,32 +53,34 @@ export default class testLoop extends React.Component {
         console.log(time)
     }
 
-    handleClick = () => {
-        
-        Tone.Transport.start(); // "the thing that drive my loop"
-        this.state.loopBeat.start(0);
-      }
-
     song = (time) => {
         
         this.state.bassSynth.triggerAttackRelease("c1", "8n", time);
         console.log(time);
     }
 
+
+    playPart = () => {
+        const synth = new Tone.PolySynth().toMaster();
+        // use an array of objects as long as the object has a "time" attribute
+        const part = new Tone.Part(((time, value) => {
+        // the value is an object which contains both the note and the velocity
+            synth.triggerAttackRelease(value.note, "8n", time, value.velocity);
+        }),
+        [
+            { time: 0, note: "D4", velocity: 0.5 },
+            { time: 0, note: "F4", velocity: 0.5 },
+            { time: 0, note: "A4", velocity: 0.5 },
+            { time: 2, note: "G4", velocity: 0.5 }
+        ]).start(0);
+        part.loop = true;
+        part.loopStart = 0;
+        Tone.Transport.start(0);
+        
+    }
+
     OnOffNote = (noteToHandle) => {
         
-        // let clone = notes.map((note, i) => {
-        //     if(noteToHandle.note == note.note)
-        //     {
-        //         note.enabled = false
-        //         return note
-        //     }
-        //     else
-        //     {
-        //         note.enabled = true
-        //         return note
-        //     }
-        // })
         const notes = this.state.notes;
         const index = notes.findIndex((note,i) => noteToHandle === note)
         notes[index].enabled = !notes[index].enabled
@@ -103,13 +89,18 @@ export default class testLoop extends React.Component {
 
         
     }
+
+    handleClick = () => {
+        
+        Tone.Transport.start(); // "the thing that drive my loop"
+        this.state.loopBeat.start(0);
+    }
     
 
     render() {
         return (
             <div>
                 <div className="loopSection">
-                    {console.log("STATE >>>>>>>",this.state.notes)}
                     {this.state.notes.map((note, i) => {
                         return (
                             <div
@@ -117,10 +108,10 @@ export default class testLoop extends React.Component {
                             onClick={() => this.OnOffNote(note)}
                             data-note={note.note}
                             data-position={i}
-                            className={ "notes " + (note.note === this.state.noteEnclenche ? "note-active" : "note")}
+                            className={ "notes " + (note.note === this.state.noteEnclenche ? "note-active" : "note2")}
                             style={{
                                 color: note.note === this.state.noteEnclenche ? "yellow" : "blue",
-                                background: !note.enabled && "rgb(221, 111, 111)"
+                                background: !note.enabled && "green"
                             }}
                             >
                                 {note.note}
@@ -129,10 +120,11 @@ export default class testLoop extends React.Component {
                         )
                     })}
                 </div>
-                <button onClick={this.playLoop}>START</button>
-                <button onClick={this.playSequence}>START seq</button>
-                <button onClick={() => {Tone.Transport.stop()}}>STOP</button>
-                <button onClick={this.handleClick}>Loop Test</button>
+                <button onClick={this.playLoop}>LALALAL START</button>
+                <button onClick={this.playSequence}>LALALALA START seq</button>
+                <button onClick={() => {Tone.Transport.stop()}}>LALALAL STOP</button>
+                <button onClick={this.handleClick}>LALALA Loop Test</button>
+                <button onClick={this.playPart}>Sequence Test</button>
             </div>
         )
     }
