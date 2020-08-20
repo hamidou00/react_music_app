@@ -240,3 +240,15 @@
     background: yellow;
     border: 1px solid;
 }
+
+.effects{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 500px;
+}
+
+.delay{
+    border: 1px solid black;
+    padding: 5px;
+}

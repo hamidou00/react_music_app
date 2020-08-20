@@ -5,7 +5,7 @@ export default function nav({routes}) {
     return (
     <nav>
         <label><Link to="/">Home</Link></label>
-        {routes.map(route => <label><Link to={'/'+route}>{route}</Link></label>)}
+        {routes.map((route, i) => <label key={i}><Link to={'/'+route}>{route}</Link></label>)}
     </nav>
     )
 }

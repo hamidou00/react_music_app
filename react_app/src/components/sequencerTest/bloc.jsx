@@ -1,15 +1,15 @@
 import React from 'react'
 
-export default function bloc({bloc, blocIndex, rowIndex, callBackToggleBloc, metronomeActive}) {
+export default function bloc({bloc, blocIndex, callBackToggleBloc, metronomeActive}) {
     const handle = () => {
-        callBackToggleBloc({bloc, blocIndex, rowIndex})
+        callBackToggleBloc(bloc)
     }
 
-    const classActive = Boolean(bloc) ?  "note_bloc_active" : "note_bloc";
+    const classActive = bloc.isActive ?  "note_bloc_active" : "note_bloc";
     const onMetronome = metronomeActive ? "pink" : "";
     return (
         <div className={classActive} onClick={()=> handle(bloc)} style={{background : onMetronome}}>
-            {bloc}
+            {bloc.note}
         </div>
     )
 }

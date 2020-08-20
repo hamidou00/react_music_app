@@ -20,7 +20,9 @@ export default function Layout() {
             </Switch>
         </main>
 
-        <footer></footer>
+        <footer>
+            
+        </footer>
     </Router>
     )
 }

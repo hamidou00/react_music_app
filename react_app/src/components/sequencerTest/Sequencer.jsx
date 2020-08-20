@@ -2,12 +2,15 @@ import React from 'react';
 import * as Tone from "tone";
 import StartAudioContext from "startaudiocontext";
 import Row from "./row";
-import bloc from './bloc';
-import row from './row';
-import defaultMatrix from "./matrixSequence.json";
+// import defaultMatrix from "./matrixSequence.json";
+import roi_lion from "./roi-lion.json";
 import defaultSequence from "./sequence.json";
+import Effects from "./effects";
 //const notes = ["C3", "Eb3", "G3", "Bb3"];
-const synth = new Tone.PolySynth().toMaster();
+
+const synth = new Tone.PolySynth()
+
+
 const context = new AudioContext();
 
 //const notes = ["C4","D4","E4","F4", "G4", "A4", "B4", "C5"]
@@ -17,6 +20,31 @@ const loopMatrix = notes.map(() => {
     return [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 })
 
+const notesMatrix = [];
+var count = 0;
+var countTime = 0;
+for (let i = 0; i < 8; i++){
+    countTime = 0;
+    for (let b = 0; b <= 16; b++){
+        notesMatrix.push({
+            time: "0:" + countTime,
+            note: notes[i],
+            velocity: 0,
+            matrixIndex: count,
+            rowIndex: i,
+            isActive: false
+        });
+        count++;
+        count += 0.5;
+    }
+}
+
+// create an autopanner and start it
+
+// route an oscillator through the panner and start it
+
+//console.log(notesMatrix)
+//console.log('LOOPMATRIX2 >>' , notesMatrix)
 //console.log("LOOOP MATRIX",loopMatrix);
 
 export default class Sequencer extends React.Component {
@@ -25,37 +53,36 @@ export default class Sequencer extends React.Component {
         synth : null,
         notes: notes,
         loopMatrix: loopMatrix,
+        notesMatrix: roi_lion, //notesMatrix
         noteEnclenche: "",
         bassSynth : null,
-        metronomeIndex : -1,
-        defaultSequence: defaultSequence
+        metronomeIndex : 0,
+        defaultSequence: defaultSequence,
+        matrixMetronome : [],
+        effects : {
+            volume : 0.5,
+            distortion : 0,
+            vibrato : 0,
+        }
     }
 
     componentDidMount = () => {
+
         this.setState({synth})
         StartAudioContext(Tone.context);
         StartAudioContext(context);
     }
-    
+
     playPart = () => {
-        console.log(this.state.loopMatrix)
-        Tone.Transport.stop();
+        //console.log("NOW >>>> ",Tone.now());
+        // Tone.Transport.stop();
+        // Tone.Transport.clear();
+        
+        //Tone.Transport.seconds = 0;
         console.log("play")
-        //const synth = new Tone.PolySynth().toMaster();
-        // use an array of objects as long as the object has a "time" attribute
         const notes = this.state.notes;
         const loopMatrix = this.state.loopMatrix;
-        // const notesMatrix = loopMatrix.filter((row, index) => {
-        //     let tab = row.filter(bloc => Boolean(bloc))
-        //     if (tab.length != 0) return row
-        // })
-
-        // const notesMatrix2 = notesMatrix.map((row, index) => {
-
-        // })
-        //copier la matrix et créer une matrix de notes avec leur velocity et time
-        //ensuite ne rendre que les bloc actif (le chiffre 1) et leur mettre une
-        //velocity de 0.5. Toute les autres cases seront undefined
+        
         const notesMatrix = loopMatrix.map((row, index) => {
             return row.map((bloc, i, arr) => {
                 return {
@@ -65,76 +92,148 @@ export default class Sequencer extends React.Component {
                 }
             })
         })
-        //.filter(row => row.filter(bloc => !undefined))
-        //console.log(notesMatrix.filter(row => row.find(bloc => !undefined)  ));
 
-        //ne garder seulement les elements qui ne sont pas undefined
         const sequence = [];
         for (let i = 0; i < notesMatrix.length; i++){
             for (let b = 0; b < notesMatrix[i].length; b++){
-                if (notesMatrix[i][b] != undefined) sequence.push(notesMatrix[i][b])
+                if (notesMatrix[i][b] !== undefined) sequence.push(notesMatrix[i][b])
             }
         }
+        
+        const matrixMetronome = this.state.notesMatrix.map((v, i, index)=> {
+            return {
+                index : v.matrixIndex,
+                isActive : v.velocity === 0.5 ? 1 : 0,
+                time: v.time
+            }
+        })
+        this.setState({matrixMetronome})
+        const notos = this.state.notesMatrix.filter(bloc => bloc.velocity === 0.5)
+        
+        console.log(notos)
+        //notos.forEach(bloc => )
+        //console.log(notos)
+        var intervalID = window.setInterval(this.testInterval, 250, 'Parameter 1', 'Parameter 2');
+        setTimeout(() => clearInterval(intervalID), 250*17);
 
-        //trier les notes par leur time
-        //console.log(sequence.sort((a, b) => a.time - b.time));
-        console.log(sequence)
-        const part = new Tone.Part(this.callBackPart, sequence.sort((a, b) => a.time - b.time)).start(0);
+        const vibrato = new Tone.Vibrato(this.state.effects.vibrato)
+        const distorsion = new Tone.Distortion(this.state.effects.distortion)
+        //const feedbackDelay = new Tone.FeedbackDelay("8n", 0.5)
+        const gainNode = new Tone.Gain(this.state.effects.volume)
+        this.state.synth.chain(vibrato , distorsion, gainNode, Tone.Master)
+        const part = new Tone.Part(this.callBackPart, notos.sort((a, b) => a.time - b.time)).start("+0.0");
         // part.loop = true;
         // part.loopStart = 0;
-        Tone.Transport.bpm.value = 150;
+        // Tone.Transport.bpm.value = 150;
+        Tone.Transport.loop = true;
+        Tone.Transport.loopEnd = "0:" + 0.5*17;
         Tone.Transport.start("+0.0");
+        
         // ramp the bpm to 120 over 10 seconds
         //Tone.Transport.bpm.rampTo(120, 10);
-        
+        // console.log("lol")
+    }
+
+    testInterval = () => {
+        this.metronome(this.state.metronomeIndex+1)
     }
 
     callBackPart = (time, value) => {
-        //console.log("Valu >> ",value)
-        console.log(value.time)
-        this.metronome(value.time);
+        console.log("time >> ",value.time)
+        console.log("SECONDS >>>> :",Tone.Transport.seconds)
+        //const timeToTriggerMetronome = this.state.matrixMetronome.find(v => v.index == value.matrixIndex)
+        //console.log("TIMTOTRIGGER ",timeToTriggerMetronome)
+        
+        //console.log("VALUEEE >>>> ",value)
+        //console.log("TONE TR SEC : ", Math.round(Tone.Transport.seconds))
+
+        //Tone.Transport.seconds = 0;
+        //console.log(Math.round(time))
+        
+        
         // the value is an object which contains both the note and the velocity
+        
         this.state.synth.triggerAttackRelease(value.note, "8n", time, value.velocity);
     }
     callBackToggleBloc = (blocToToggle) => {
         //console.log(blocToToggle)
-        const loopMatrixClone = [...this.state.loopMatrix].map((row, i) => {
-            if (i == blocToToggle.rowIndex)
+        // const loopMatrixClone = [...this.state.loopMatrix].map((row, i) => {
+        //     if (i == blocToToggle.rowIndex)
+        //     {
+        //         return row.map((bloc, i) => {
+        //             if (i == blocToToggle.blocIndex)
+        //                 return !Boolean(bloc) ? 1 : 0;
+        //             else
+        //                 return bloc;
+        //         })
+        //     }else return row;
+        // })
+
+        const notesMatrix = this.state.notesMatrix;
+        const blocToToggleLol = notesMatrix.find(bloc => bloc.matrixIndex === blocToToggle.matrixIndex)
+        //console.log(blocToToggleLol);
+        
+        notesMatrix.map((bloc) => {
+            if (bloc.matrixIndex === blocToToggleLol.matrixIndex)
             {
-                return row.map((bloc, i) => {
-                    if (i == blocToToggle.blocIndex)
-                        return !Boolean(bloc) ? 1 : 0;
-                    else
-                        return bloc
-                })
-            }else return row;
+                // bloc.velocity ==
+                bloc.velocity = blocToToggleLol.velocity === 0.5 ? 0 : 0.5;
+                bloc.isActive = !blocToToggleLol.isActive
+                return bloc;
+            }
+            else
+                return bloc;
         })
-        this.setState({loopMatrix: loopMatrixClone})
+        this.setState({notesMatrix: notesMatrix})
     }
 
     metronome = (time) => {
-        if (this.state.metronomeIndex == this.state.loopMatrix.length-1)
-            this.setState({metronomeIndex : -1})
-        else
-            this.setState({metronomeIndex : time})
+        this.setState({metronomeIndex : time})
+    }
+
+    handleEffects = (options) => {
+        Tone.Transport.pause();
+        this.setState({effects : options}, () => {
+            this.lol();
+            Tone.Transport.start()
+        })
+    }
+
+    lol = () => {
+        // const vibrato = new Tone.Vibrato(this.state.effects.vibrato)
+        // const distorsion = new Tone.Distortion(this.state.effects.distortion)
+        // //const feedbackDelay = new Tone.FeedbackDelay("8n", 0.5)
+        // const gainNode = new Tone.Gain(this.state.effects.volume)
+        // this.state.synth.chain(vibrato , distorsion, gainNode, Tone.Master)
+
+        console.log(Tone)
     }
     
-
     render() {
+        //console.log()
         const {metronomeIndex} = this.state;
+        const {notesMatrix} = this.state
+        //console.log("render render render !!!")
         return (
             <div>
                 <div className="sequencer">
-                    {this.state.loopMatrix.map((row, i) => (
-                        <Row key={i}
+                    {[...new Array(8)].map((v, i, arr) => {
+                        let row = notesMatrix.filter(v => v.rowIndex === i);
+                        //console.log(blabla)
+                        return <Row key={i}
                         row={row}
-                        rowIndex={i}
+                        // rowIndex={i}
                         metronomeIndex={metronomeIndex}
                         callBackToggleBloc={this.callBackToggleBloc}/>
-                    ))}
+                    })}
                 </div>
-                <button onClick={this.playPart}>START seq</button>
-                <button onClick={() => {Tone.Transport.stop()}}>STOP</button>
+                <button onClick={this.playPart}>START</button>
+                
+                <button onClick={() => {
+                    Tone.Transport.stop();
+                    //Tone.Transport.dispose();
+                    }}>STOP</button>
+                <Effects callBackEffects={this.handleEffects}/>
             </div>
         )
     }
