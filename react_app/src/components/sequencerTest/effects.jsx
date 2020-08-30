@@ -29,7 +29,7 @@ export default class effects extends Component {
                 <label>Distortion : {this.state.distortion}</label>
                 <input type="range" name="distortion" max="1" step="0.1" value={this.state.distortion} onChange={this.handleEffects}/>
                 <label>Vibrrrrrato : {this.state.vibrato}</label>
-                <input type="range" name="vibrato" max="50" min="-50" step="1" value={this.state.vibrato} onChange={this.handleEffects}/>
+                <input type="range" name="vibrato" max="50" min="0" step="1" value={this.state.vibrato} onChange={this.handleEffects}/>
                 <label>Reverb : {this.state.reverb}</label>
                 <input type="range" name="reverb" max={20} step={1} value={this.state.reverb} onChange={this.handleEffects}/>
                 

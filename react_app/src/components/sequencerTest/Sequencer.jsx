@@ -3,9 +3,11 @@ import * as Tone from "tone";
 import StartAudioContext from "startaudiocontext";
 import Row from "./row";
 // import defaultMatrix from "./matrixSequence.json";
-import roi_lion from "./roi-lion.json";
-import defaultSequence from "./sequence.json";
+import roi_lion from "./datas/roi-lion.json";
+import defaultSequence from "./datas/sequence.json";
 import Effects from "./effects";
+import ToolBar from "./ToolBar";
+import PreviewKeyBoard from "./previewKeyBoard";
 //const notes = ["C3", "Eb3", "G3", "Bb3"];
 
 // ######################### EFFECTS ###############################
@@ -15,11 +17,11 @@ const distorsion = new Tone.Distortion(0);
 const gainNode = new Tone.Gain(0.5);
 const reverb = new Tone.Reverb({
     reverb : 1,
-    decay: 5,
+    decay: 1,
     preDelay : 0,
     wet: 0
 });
-const vol = new Tone.Volume(-12);
+const vol = new Tone.Volume(0);
 // ######################### |||||| ###############################
 
 
@@ -40,19 +42,22 @@ var count = 0;
 var countTime = 0;
 for (let i = 0; i < 8; i++){
     countTime = 0;
-    for (let b = 0; b <= 16; b++){
+    for (let b = 0; b < 20; b++){
         notesMatrix.push({
             time: "0:" + countTime,
             note: notes[i],
             velocity: 0,
             matrixIndex: count,
             rowIndex: i,
-            isActive: false
+            isActive: false,
+            inRowIndex : b
         });
         count++;
-        count += 0.5;
+        countTime += 0.5;
     }
 }
+
+console.log(notesMatrix)
 
 // create an autopanner and start it
 
@@ -65,21 +70,22 @@ for (let i = 0; i < 8; i++){
 export default class Sequencer extends React.Component {
 
     state = {
-        synth : null,
+        synth : synth,
         notes: notes,
         loopMatrix: loopMatrix,
-        notesMatrix: roi_lion, //notesMatrix
+        notesMatrix: notesMatrix, //notesMatrix
         noteEnclenche: "",
         bassSynth : null,
-        metronomeIndex : 0,
+        metronomeIndex : -1,
         defaultSequence: defaultSequence,
         matrixMetronome : [],
+        activatedNotes: null,
         effects1: {
-            volume : null,
+            volume : vol,
             gainNode : null,
             distortion : null,
-            vibrato : null,
-            reverb : null
+            vibrato : vibrato,
+            reverb : reverb
         },
         effects : {
             volume : 0.5,
@@ -102,22 +108,18 @@ export default class Sequencer extends React.Component {
         })
         StartAudioContext(Tone.context);
         StartAudioContext(context);
-
-
-
-
-        console.log()
-
-        
-        // volume : gainNode,
-        // distortion : distorsion,
-        // vibrato : vibrato,
-        // reverb : reverb,
     }
 
     playPart = async () => {
-        //console.log(gainNode.get())
-        //console.log(this.state.effects1.gainNode.set())
+        clearInterval(intervalID)
+        clearTimeout(timeou)
+        this.setState({metronomeIndex: -1})
+
+        
+        //var intervalID = null
+        var intervalID = window.setInterval(this.testInterval, 250, 'Parameter 1', 'Parameter 2');
+        var timeou = setTimeout(() => clearInterval(intervalID), 250*22);
+
         //console.log("NOW >>>> ",Tone.now());
         // Tone.Transport.stop();
         // Tone.Transport.clear();
@@ -131,33 +133,15 @@ export default class Sequencer extends React.Component {
                 return {
                     time: i,
                     note: notes[index],
-                    velocity: Boolean(bloc) ? 0.5 : 0
                 }
             })
         })
+        const notos = this.state.notesMatrix.filter(bloc => bloc.velocity === 3)
+        
+        //console.log("NOTOSE :: " , notos)
 
-        const sequence = [];
-        for (let i = 0; i < notesMatrix.length; i++){
-            for (let b = 0; b < notesMatrix[i].length; b++){
-                if (notesMatrix[i][b] !== undefined) sequence.push(notesMatrix[i][b])
-            }
-        }
+
         
-        const matrixMetronome = this.state.notesMatrix.map((v, i, index)=> {
-            return {
-                index : v.matrixIndex,
-                isActive : v.velocity === 0.5 ? 1 : 0,
-                time: v.time
-            }
-        })
-        this.setState({matrixMetronome})
-        const notos = this.state.notesMatrix.filter(bloc => bloc.velocity === 0.5)
-        
-        console.log(notos)
-        //notos.forEach(bloc => )
-        //console.log(notos)
-        var intervalID = window.setInterval(this.testInterval, 250, 'Parameter 1', 'Parameter 2');
-        setTimeout(() => clearInterval(intervalID), 250*17);
 
         // const vibrato = new Tone.Vibrato(this.state.effects.vibrato);
         // const distorsion = new Tone.Distortion(this.state.effects.distortion);
@@ -167,27 +151,26 @@ export default class Sequencer extends React.Component {
         //var lol = await reverb.generate()
         // console.log("THE PROMISE >>>", lol, "AND READY is ? ", reverb.ready);
         // this.state.synth.chain(vibrato , distorsion , reverb , gainNode , Tone.Master)
-        this.state.synth.chain(
-            vibrato,
-            // distortion,
-            // this.state.effects1.reverb,
-            reverb,
-            vol,
-
-            Tone.Master
-        )
         
-        const part = new Tone.Part(this.callBackPart, notos.sort((a, b) => a.time - b.time)).start("+0.0");
+        // this.setState({activatedNotes: notos.sort((a, b) => a.time - b.time)}, () => {
+            this.state.synth.chain(
+                vibrato,
+                // feedbackDelay,
+                // distortion,
+                // this.state.effects1.reverb,
+                reverb,
+                vol,
+    
+                Tone.Master
+            )
+            const part = new Tone.Part(this.callBackPart, notos.sort((a, b) => a.time - b.time)).start("+0.0");
+            Tone.Transport.start("+0.0");
+        // })
         // part.loop = true;
         // part.loopStart = 0;
         // Tone.Transport.bpm.value = 150;
         // Tone.Transport.loop = true;
         // Tone.Transport.loopEnd = "0:" + 0.5*17;
-        Tone.Transport.start("+0.0");
-
-        // ramp the bpm to 120 over 10 seconds
-        //Tone.Transport.bpm.rampTo(120, 10);
-        // console.log("lol")
     }
 
     testInterval = () => {
@@ -195,8 +178,8 @@ export default class Sequencer extends React.Component {
     }
 
     callBackPart = async (time, value) => {
-        console.log("time >> ",value.time);
-        console.log("SECONDS >>>> :",Tone.Transport.seconds);
+        //console.log("time >> ",value.time);
+        //console.log("SECONDS >>>> :",Tone.Transport.seconds);
         //const timeToTriggerMetronome = this.state.matrixMetronome.find(v => v.index == value.matrixIndex)
         //console.log("TIMTOTRIGGER ",timeToTriggerMetronome)
         
@@ -205,9 +188,8 @@ export default class Sequencer extends React.Component {
 
         //Tone.Transport.seconds = 0;
         //console.log(Math.round(time))
-        
         const lol = await reverb.generate();
-        console.log(lol)
+        //console.log(lol)
         // the value is an object which contains both the note and the velocity
         
         synth.triggerAttackRelease(value.note, "8n", time, value.velocity);
@@ -234,14 +216,14 @@ export default class Sequencer extends React.Component {
             if (bloc.matrixIndex === blocToToggleLol.matrixIndex)
             {
                 // bloc.velocity ==
-                bloc.velocity = blocToToggleLol.velocity === 0.5 ? 0 : 0.5;
-                bloc.isActive = !blocToToggleLol.isActive
+                bloc.velocity = blocToToggleLol.velocity === 3 ? 0 : 3;
+                // bloc.isActive = !blocToToggleLol.isActive
                 return bloc;
             }
             else
                 return bloc;
         })
-        this.setState({notesMatrix: notesMatrix})
+        this.setState({notesMatrix: notesMatrix, activatedNotes: notesMatrix.filter(note => note.velocity == 3)})
     }
 
     metronome = (time) => {
@@ -260,7 +242,7 @@ export default class Sequencer extends React.Component {
         console.log("Effects Options : ", options.volume);
         //const gainNode = this.state.effects1.gainNode;
         // console.log("Avant : ", vol.get());
-        //vol.set({volume : parseInt(options.volume)});
+        vol.set({volume : parseInt(options.volume)});
         vibrato.set({
             depth : parseInt(options.vibrato),
             frequency : 3,
@@ -277,6 +259,19 @@ export default class Sequencer extends React.Component {
         // })
     }
 
+    playPreviewsKeyboardNote = (note) => {
+        this.state.synth.triggerAttackRelease(note, "8n");
+        this.state.synth.chain(
+            vibrato,
+            // distortion,
+            // this.state.effects1.reverb,
+            // reverb,
+            vol,
+            Tone.Master
+        )
+        Tone.Transport.start();
+    }
+
     lol = () => {
         // const vibrato = new Tone.Vibrato(this.state.effects.vibrato)
         // const distorsion = new Tone.Distortion(this.state.effects.distortion)
@@ -285,31 +280,39 @@ export default class Sequencer extends React.Component {
         // this.state.synth.chain(vibrato , distorsion, gainNode, Tone.Master)
         // console.log(Tone)
     }
-    
+    stop = () => {
+        Tone.Transport.stop();
+    }
     render() {
         //console.log()
         const {metronomeIndex} = this.state;
         const {notesMatrix} = this.state;
+        const {effects1, synth} = this.state;
+        //const {vibrato} = effects1
+        console.log("LALALAAL ", synth, effects1);
         //console.log("render render render !!!")
         return (
-            <div>
-                <div className="sequencer">
-                    {[...new Array(8)].map((v, i, arr) => {
-                        let row = notesMatrix.filter(v => v.rowIndex === i);
-                        //console.log(blabla)
-                        return <Row key={i}
-                        row={row}
-                        // rowIndex={i}
-                        metronomeIndex={metronomeIndex}
-                        callBackToggleBloc={this.callBackToggleBloc}/>
-                    })}
+            <div className="sequencer">
+                <ToolBar play={this.playPart} stop={this.stop}/>
+                <div className="editor">
+                    <PreviewKeyBoard 
+                    notes={this.state.notes}
+                    noteToShedule={this.state.activatedNotes}
+                    synthConfig={{synth, effects1}}
+                    playNote={this.playPreviewsKeyboardNote}/>
+
+                    <div className="rows pointer">
+                        {[...new Array(8)].map((v, i, arr) => {
+                            let row = notesMatrix.filter(v => v.rowIndex === i);
+                            //console.log(blabla)
+                            return <Row key={i}
+                            row={row}
+                            // rowIndex={i}
+                            metronomeIndex={metronomeIndex}
+                            callBackToggleBloc={this.callBackToggleBloc}/>
+                        })}
+                    </div>
                 </div>
-                <button onClick={this.playPart}>START</button>
-                
-                <button onClick={() => {
-                    Tone.Transport.stop();
-                    //Tone.Transport.dispose();
-                    }}>STOP</button>
                 <Effects callBackEffects={this.handleEffects}/>
             </div>
         )
