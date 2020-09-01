@@ -2,7 +2,8 @@ import React, { useState , useEffect } from 'react';
 import { useSelector, useDispatch, connect } from 'react-redux';
 
 import {} from '../../../redux/reducers/synthSlice';
-import { setSequences, setOneSequence, addSequence, getSequences } from '../../../redux/reducers/projectSlice';
+import initMatrix from './initMatrix'
+import { setSequences, setOneSequence, addSequence, getSequences, testAction, getTest } from '../../../redux/reducers/projectSlice';
 import Row from './row';
 
 const gamme2 = [
@@ -21,46 +22,17 @@ const gamme2 = [
     "C4"
   ]
 
-export function Sequencer({effects, tone, synth, sequences}) {
+export function Sequencer({effects, tone, synth, synthIndex, sequences}) {
     const dispatch = useDispatch();
     // initMatrix(gamme)
     const [notesMatrix, setNotesMatrix] = useState([]);
     useEffect(() => {
-        initMatrix()
+        setNotesMatrix(initMatrix())
     }, [])
-
-    const initMatrix = () => {
-        const notesMatrix = [];
-        var count = 0;
-        var countTime = 0;
-        for (let i = 0; i < gamme2.length; i++){
-            countTime = 0;
-            for (let b = 0; b < 20; b++){
-                notesMatrix.push({
-                    time: "0:" + countTime,
-                    note: gamme2[i],
-                    velocity: 0,
-                    matrixIndex: count,
-                    rowIndex: i,
-                    // isActive: false,
-                    inRowIndex : b
-                });
-                count++;
-                countTime += 0.5;
-            }
-        }
-        
-        setNotesMatrix(notesMatrix)
-        
-    }
+    //console.log(">>>>>",sequences)
 
     const addIt = ()=> {
-        const sequences1 = [... sequences]
-        
-        sequences1.push(["lala", "gogo"])
-        // console.log(sequences1)
 
-        dispatch(addSequence(sequences1))
     }
 
     const toggleBloc = (blocToToggle) => {
@@ -75,8 +47,16 @@ export function Sequencer({effects, tone, synth, sequences}) {
             else
                 return bloc;
         })
-        // console.log(lol)
-        setNotesMatrix(lol)
+        let sequence = notesMatrix.filter(bloc => bloc.velocity === 3).sort((a, b) => a.time - b.time)
+        dispatch(setOneSequence({synthIndex, sequence}))
+        // setNotesMatrix(lol)
+        // var sequenceslol = [... sequences]
+        // let sequence = notesMatrix.filter(bloc => bloc.velocity === 3).sort((a, b) => a.time - b.time)
+        // sequenceslol[synthIndex] = sequence
+        // console.log(sequenceslol)
+        // dispatch(setSequences(sequenceslol))
+        
+        
         // const sequences1 = [... sequences]
         
         // sequences1.push(notesMatrix)
