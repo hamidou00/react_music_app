@@ -15,6 +15,6 @@ export default function Piano({synth, gamme}) {
             <div className="gamme major">
                 {gamme.map((note, i) => note.major !== undefined && <Tile key={i} note={note.major} synth={synth}/> )}
             </div>
-        </div> 
+        </div>
     )   
 }

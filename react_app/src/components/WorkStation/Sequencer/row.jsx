@@ -1,6 +1,6 @@
 import React from 'react'
 import Bloc from './bloc'
-export default function row({row, toggleBloc}) {
+export default function row({row, toggleBloc, metronome}) {
     return (
         <div className="row">
             {
@@ -8,6 +8,8 @@ export default function row({row, toggleBloc}) {
                     <Bloc
                     key={i}
                     bloc={bloc}
+                    blocRowIndex={i}
+                    metronome={metronome}
                     toggleBloc={toggleBloc}
                     />
                 ))

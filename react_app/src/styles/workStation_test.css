@@ -1,0 +1,60 @@
+.WorkStation1 {
+    border: 3px solid black;
+    padding: 35px;
+}
+
+.SynthList1 {
+    border: 3px solid purple;
+    padding: 35px;
+}
+
+.Synth1 {
+    border: 3px solid yellow;
+    padding: 35px;
+    margin-bottom: 35px;
+}
+
+.Effects1 {
+    border: 3px solid pink;
+    padding: 35px;
+}
+
+.Sequencer1 {
+    border: 3px solid green;
+    padding: 35px;
+}
+
+.legende {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* each legend square */
+.legende div {
+    width: 100px;
+    /* height: 50px; */
+    color: white;
+    text-align: center;
+}
+
+.legende div:nth-child(1){
+    background: black;
+
+}
+
+.legende div:nth-child(2){
+    background: purple;
+}
+
+.legende div:nth-child(3){
+    background: yellow;
+}
+
+.legende div:nth-child(4){
+    background: pink;
+}
+
+.legende div:nth-child(5){
+    background: green;
+}

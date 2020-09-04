@@ -2,6 +2,7 @@
 @import "./sequencer.css";
 @import "./piano.css";
 @import "./effects.css";
+@import "./workStation_test.css";
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

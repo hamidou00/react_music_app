@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Sequencer from '../Sequencer/sequencer';
+import Effects from './effects';
 import { useSelector, useDispatch, connect } from 'react-redux'
 
 import {setVolume, getEffects, getGammeNotes} from '../../../redux/reducers/synthSlice'
@@ -11,7 +12,6 @@ export default function Synth({synth, tone, synthIndex}) {
     const dispatch = useDispatch();
     const gamme = useSelector(getGammeNotes)
     //console.log(synth.get())
-
     const playANote = () => {
         synth.triggerAttackRelease("D4","8n")
     }
@@ -26,8 +26,9 @@ export default function Synth({synth, tone, synthIndex}) {
             <div className="Synth1">
                 <h1>Synth {synthIndex}</h1>
                 <button onClick={playANote}>Play a Note</button>
+                <Effects synth={synth} synthIndex={synthIndex}/>
                 <Piano synth={synth} gamme={gamme}/>
-                <Sequencer synth={synth} tone={tone} />
+                <Sequencer synth={synth} tone={tone} synthIndex={synthIndex}/>
             </div>
         </>
     )

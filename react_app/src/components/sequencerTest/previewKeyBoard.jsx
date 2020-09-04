@@ -55,7 +55,7 @@ export default class previewKeyBoard extends Component {
     // }
     render() {
         //console.log("PREVIEW THAT LUL : ",this.state.notesToActivate)
-        console.log("notes To activate : ",this.state.notesToActivate)
+        //console.log("notes To activate : ",this.state.notesToActivate)
         return (
             <div className="previewNotes">
                 {

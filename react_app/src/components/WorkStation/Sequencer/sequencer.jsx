@@ -1,9 +1,20 @@
 import React, { useState , useEffect } from 'react';
 import { useSelector, useDispatch, connect } from 'react-redux';
 
-import {} from '../../../redux/reducers/synthSlice';
-import initMatrix from './initMatrix'
-import { setSequences, setOneSequence, addSequence, getSequences, testAction, getTest } from '../../../redux/reducers/projectSlice';
+
+import initMatrix from './initMatrix';
+import {
+    metronomeNext,
+    resetMetronome
+} from '../../../redux/reducers/synthSlice';
+import { 
+    setSequences,
+    setOneSequence,
+    addSequence,
+    getSequences,
+    testAction,
+    getTest,
+} from '../../../redux/reducers/projectSlice';
 import Row from './row';
 
 const gamme2 = [
@@ -22,17 +33,19 @@ const gamme2 = [
     "C4"
   ]
 
-export function Sequencer({effects, tone, synth, synthIndex, sequences}) {
+export function Sequencer({effects, tone, synth, synthIndex, sequences, metronome}) {
     const dispatch = useDispatch();
     // initMatrix(gamme)
+    var [lala, setLala] = useState(null)
     const [notesMatrix, setNotesMatrix] = useState([]);
     useEffect(() => {
         setNotesMatrix(initMatrix())
+        console.log(initMatrix())
     }, [])
     //console.log(">>>>>",sequences)
 
     const addIt = ()=> {
-
+        
     }
 
     const toggleBloc = (blocToToggle) => {
@@ -66,13 +79,28 @@ export function Sequencer({effects, tone, synth, synthIndex, sequences}) {
     }
 
     const playSequence = () => {
+        if (lala != null) {
+            tone.Transport.clear(lala._event._state._timeline[0].id)
+            //lala.cancel("0")
+        }
+        
+        dispatch(resetMetronome())
         const notesToTrigger = notesMatrix.filter(bloc => bloc.velocity === 3).sort((a, b) => a.time - b.time)
         console.log(notesToTrigger)
         // synth.triggerAttackRelease("C4", "8n")
-        const part = new tone.Part(triggerNote, notesToTrigger).start("+0.0");
+        new tone.Part(triggerNote, notesToTrigger).start("+0.0");
+        
+        setLala(new tone.Loop((time) => {
+            dispatch(metronomeNext())
+        }, "8n").start("+0.0").stop("56"))
+        
+        // lala.loopEnd = "2";
+        //console.log(lala.toSeconds("0:19"))
     }
 
     const triggerNote = (time, value) => {
+
+        console.log(time)
         synth.triggerAttackRelease(value.note, "8n", time, value.velocity)
     }
     
@@ -85,7 +113,7 @@ export function Sequencer({effects, tone, synth, synthIndex, sequences}) {
                     {
                         gamme2.map((note, i) => {
                             let row = notesMatrix.filter(v => v.rowIndex === i);
-                            return <Row key={i} row={row} toggleBloc={toggleBloc}/>
+                            return <Row key={i} row={row} metronome={metronome} toggleBloc={toggleBloc}/>
                         })
                     }
                 </div>
@@ -97,7 +125,8 @@ export function Sequencer({effects, tone, synth, synthIndex, sequences}) {
 const mapStateToProps = state => ({
     // gamme : state.Synth.gamme,
     effects : state.Synth.effects,
-    sequences : state.Project.sequences
+    sequences : state.Project.sequences,
+    metronome : state.Synth.metronome,
 })
 Sequencer = connect(mapStateToProps)(Sequencer)
 

@@ -5,10 +5,10 @@ import '../styles/index.css';
 // import Sampler from "../functions/testSampler";
 // import Loop from "./loop";
 import Header from "./nav/header";
-import Piano from "./piano";
+// import Piano from "./piano";
 // import TestLoop from "./testLoop";
 // import TestLoop2 from "./testLoop2";
-import Sequencer from "./sequencerTest/Sequencer";
+// import Sequencer from "./sequencerTest/Sequencer";
 
 export default function Layout() {
     return (
@@ -19,11 +19,11 @@ export default function Layout() {
         </section>
         <section className="sectionPiano">
             <Header title="Piano" nav={false}/>
-            <Piano />
+            {/* <Piano /> */}
             {/* <Sampler /> */}
             {/* <TestLoop /> */}
             {/* <TestLoop2 /> */}
-            <Sequencer />
+            {/* <Sequencer /> */}
         </section>
     </>
     )

@@ -1,17 +1,20 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
+import BitCrusher from '../../Effects/BitCrucher';
 
-export default function effects() {
-    const dispatch = useDispatch();
-    const gamme = useSelector(getGammeNotes)
+export default function Effects({synth, synthIndex}) {
+    // const dispatch = useDispatch();
+    // const gamme = useSelector(getGammeNotes)
+    const [volume, setVolume] = useState(-20);
+    const [effects, setEffects] = useState({
+        volume : -20,
+    });
 
     const handleEffects = (evt) => {
-        dispatch([setVolume](evt.target.value))
-        synth.set({[evt.target.name]: evt.target.value})
+        setEffects({ [evt.target.name] : evt.target.value})
     }
-
     return (
-        <div>
-            <input onChange={changeVolume} type="range" name="setVolume" max="5" min="-50" step="1" />
+        <div className="Effects1">
+            <BitCrusher synth={synth} synthIndex={synthIndex}/>
         </div>
     )
 }

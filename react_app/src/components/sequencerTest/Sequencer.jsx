@@ -22,11 +22,8 @@ const reverb = new Tone.Reverb({
     wet: 0
 });
 const vol = new Tone.Volume(0);
-// ######################### |||||| ###############################
-
-
+// ######################### |||||| ##########################
 const synth = new Tone.PolySynth();
-
 
 const context = new AudioContext();
 
@@ -92,7 +89,8 @@ export default class Sequencer extends React.Component {
             distortion : 0,
             vibrato : 0,
             reverb : 0
-        }
+        },
+        testCount : 0
     }
     componentDidMount = () => {
         //this.setState({synth})
@@ -103,7 +101,7 @@ export default class Sequencer extends React.Component {
                 distortion : distorsion,
                 vibrato : vibrato,
                 reverb : reverb,
-                gainNode : gainNode,
+                gainNode : gainNode
             }
         })
         StartAudioContext(Tone.context);
@@ -111,6 +109,7 @@ export default class Sequencer extends React.Component {
     }
 
     playPart = async () => {
+        console.log(Tone.Transport);
         clearInterval(intervalID)
         clearTimeout(timeou)
         this.setState({metronomeIndex: -1})
@@ -139,8 +138,6 @@ export default class Sequencer extends React.Component {
         const notos = this.state.notesMatrix.filter(bloc => bloc.velocity === 3)
         
         //console.log("NOTOSE :: " , notos)
-
-
         
 
         // const vibrato = new Tone.Vibrato(this.state.effects.vibrato);
@@ -164,6 +161,7 @@ export default class Sequencer extends React.Component {
                 Tone.Master
             )
             const part = new Tone.Part(this.callBackPart, notos.sort((a, b) => a.time - b.time)).start("+0.0");
+            const loop = new Tone.Loop(this.testLoop, "8n").start(0);
             Tone.Transport.start("+0.0");
         // })
         // part.loop = true;
@@ -171,6 +169,9 @@ export default class Sequencer extends React.Component {
         // Tone.Transport.bpm.value = 150;
         // Tone.Transport.loop = true;
         // Tone.Transport.loopEnd = "0:" + 0.5*17;
+    }
+    testLoop = (time) => {
+        this.setState({testCount : this.state.testCount+1})
     }
 
     testInterval = () => {
@@ -185,7 +186,7 @@ export default class Sequencer extends React.Component {
         
         //console.log("VALUEEE >>>> ",value)
         //console.log("TONE TR SEC : ", Math.round(Tone.Transport.seconds))
-
+        console.log(time)
         //Tone.Transport.seconds = 0;
         //console.log(Math.round(time))
         const lol = await reverb.generate();
@@ -228,7 +229,7 @@ export default class Sequencer extends React.Component {
 
     metronome = (time) => {
         this.setState({metronomeIndex : time})
-        console.log(time)
+        // console.log(time)
     }
 
     handleEffects = (options) => {
@@ -289,10 +290,11 @@ export default class Sequencer extends React.Component {
         const {notesMatrix} = this.state;
         const {effects1, synth} = this.state;
         //const {vibrato} = effects1
-        console.log("LALALAAL ", synth, effects1);
+        // console.log("LALALAAL ", synth, effects1);
         //console.log("render render render !!!")
         return (
             <div className="sequencer">
+                {this.state.testCount}
                 <ToolBar play={this.playPart} stop={this.stop}/>
                 <div className="editor">
                     <PreviewKeyBoard 
