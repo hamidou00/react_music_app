@@ -2,7 +2,8 @@ import React, { useState , useEffect } from 'react';
 import { useSelector, useDispatch, connect } from 'react-redux';
 
 
-import initMatrix from './initMatrix';
+import initMatrix from './functions/initMatrix';
+import sequenceToMatrix from './functions/sequenceToMatrix';
 import {
     metronomeNext,
     resetMetronome
@@ -33,35 +34,61 @@ const gamme2 = [
     "C4"
   ]
 
-export function Sequencer({effects, tone, synth, synthIndex, sequences, metronome}) {
+export function Sequencer({effects, tone, synth, synthIndex, sequences, sequence, metronome}) {
     const dispatch = useDispatch();
-    // initMatrix(gamme)
-    var [lala, setLala] = useState(null)
+    var [loop, setLoop] = useState(null)
     const [notesMatrix, setNotesMatrix] = useState([]);
     useEffect(() => {
         setNotesMatrix(initMatrix())
-        console.log(initMatrix())
-    }, [])
-    //console.log(">>>>>",sequences)
-
-    const addIt = ()=> {
         
-    }
+        //console.log("SEQUENCE TO MATRIX", sequenceToMatrix(sequences[0]))
+    }, [])
+
+    useEffect(() => {
+        if (sequences.length != 0) // selement si sequences reçois les donnée depuis la bdd (async await)
+        {
+            setNotesMatrix(sequenceToMatrix(sequences[synthIndex])) // introduit les notes de la sequence dans une matrice
+        }
+        
+    }, [sequences]) // update seuelement si sequences change d'etat
 
     const toggleBloc = (blocToToggle) => {
-        const blocToToggleLol = notesMatrix.find(bloc => bloc.matrixIndex === blocToToggle.matrixIndex)
+        //const matrixCopy = [...notesMatrix]
+        //const blocToToggleLol = matrixCopy.find(bloc => bloc.matrixIndex === blocToToggle.matrixIndex)
+        //blocToToggle.velocity = blocToToggleLol.velocity === 3 ? 0 : 3;
+        // setNotesMatrix(matrixCopy);
+        
+        if (loop != null) {
+            loop.stop();
+            if (loop._event._state._timeline[0] != undefined)
+            tone.Transport.clear( loop._event._state._timeline[0].id)
+            loop.cancel("0")
+        }
+        console.log(notesMatrix)
+        
+
         const lol = notesMatrix.map((bloc) => {
-            if (bloc.matrixIndex === blocToToggleLol.matrixIndex)
+            if (bloc.matrixIndex === blocToToggle.matrixIndex)
             {
-                bloc.velocity = blocToToggleLol.velocity === 3 ? 0 : 3;
+                //bloc.velocity = blocToToggle.velocity === 3 ? 0 : 3;
                 // bloc.isActive = !blocToToggleLol.isActive
-                return bloc;
+                return {
+                    velocity : blocToToggle.velocity === 3 ? 0 : 3,
+                    note : blocToToggle.note,
+                    matrixIndex : blocToToggle.matrixIndex,
+                    rowIndex : blocToToggle.rowIndex,
+                    inRowIndex : blocToToggle.inRowIndex,
+                    time : blocToToggle.time
+                }
             }
             else
                 return bloc;
         })
-        let sequence = notesMatrix.filter(bloc => bloc.velocity === 3).sort((a, b) => a.time - b.time)
-        dispatch(setOneSequence({synthIndex, sequence}))
+        setNotesMatrix(lol)
+        console.log(lol)
+        let sequence = lol.filter(bloc => bloc.velocity === 3).sort((a, b) => a.time - b.time)
+        dispatch(setOneSequence({synthIndex, sequence})) // pour le sequencer globale : j'ajoute la sequence de ce synth qui va être mis dans le part
+        
         // setNotesMatrix(lol)
         // var sequenceslol = [... sequences]
         // let sequence = notesMatrix.filter(bloc => bloc.velocity === 3).sort((a, b) => a.time - b.time)
@@ -79,28 +106,41 @@ export function Sequencer({effects, tone, synth, synthIndex, sequences, metronom
     }
 
     const playSequence = () => {
-        if (lala != null) {
-            tone.Transport.clear(lala._event._state._timeline[0].id)
-            //lala.cancel("0")
+        // tone.Transport.stop();
+        if (loop != null) {
+            // loop.stop();
+            //tone.Transport.clear(loop._event._state._timeline[0].id)
+            loop.cancel("0")
+
+            loop.set({
+                callback : loopCallback,
+                interval : "8n"
+            })
+
+            loop.start();
+
+        } else {
+            
+            
+            // console.log(notesToTrigger)
+            // synth.triggerAttackRelease("C4", "8n")
+            
+            
+            setLoop(new tone.Loop(loopCallback, "8n").start("+0.0").stop("56"))
         }
-        
         dispatch(resetMetronome())
         const notesToTrigger = notesMatrix.filter(bloc => bloc.velocity === 3).sort((a, b) => a.time - b.time)
-        console.log(notesToTrigger)
-        // synth.triggerAttackRelease("C4", "8n")
         new tone.Part(triggerNote, notesToTrigger).start("+0.0");
         
-        setLala(new tone.Loop((time) => {
-            dispatch(metronomeNext())
-        }, "8n").start("+0.0").stop("56"))
         
-        // lala.loopEnd = "2";
-        //console.log(lala.toSeconds("0:19"))
+        
+        // loop.loopEnd = "2";
+        //console.log(loop.toSeconds("0:19"))
     }
 
-    const triggerNote = (time, value) => {
+    const loopCallback = (time) => dispatch(metronomeNext())
 
-        console.log(time)
+    const triggerNote = (time, value) => {
         synth.triggerAttackRelease(value.note, "8n", time, value.velocity)
     }
     
@@ -122,11 +162,14 @@ export function Sequencer({effects, tone, synth, synthIndex, sequences, metronom
     )
 }
 
+// ces données proviennent du store (redux) 
+//elles sont ensuite envoyées en tant que props à la fonction
 const mapStateToProps = state => ({
     // gamme : state.Synth.gamme,
     effects : state.Synth.effects,
     sequences : state.Project.sequences,
     metronome : state.Synth.metronome,
+    sequence : state.Synth.sequence
 })
 Sequencer = connect(mapStateToProps)(Sequencer)
 

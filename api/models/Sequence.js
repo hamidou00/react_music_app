@@ -7,10 +7,7 @@ const SequenceSchema = new Schema({
         ref: "Synth"
     }],
 
-    sequences: [{
-        type: Schema.Types.ObjectId,
-        ref: "Sequence"
-    }]
+    sequence: Schema.Types.Array
 })
 
 const SequenceModel = mongoose.model("Sequence", SequenceSchema);

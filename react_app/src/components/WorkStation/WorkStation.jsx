@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch, connect } from 'react-redux';
-import { setSequences,
+import { 
+    setSequences,
     setOneSequence,
     addSequence,
     getSequences,
@@ -9,12 +10,12 @@ import { setSequences,
 } from '../../redux/reducers/projectSlice';
 import { getBitCrusher } from '../../redux/reducers/synthSlice';
 import SynthList from './SynthList';
-import initMatrix from './Sequencer/initMatrix';
+import initMatrix from './Sequencer/functions/initMatrix';
+import axios from 'axios';
 
 export function WorkStation({synths, tone, sequences, effectssss}) {
     const dispatch = useDispatch();
     const bitCrusher = useSelector((state) => getBitCrusher(state, 0))
-    console.log(bitCrusher)
     useEffect(() => {
         effectssss.bitCrusher.set(bitCrusher);
         // synths[0].toMaster();
@@ -25,7 +26,13 @@ export function WorkStation({synths, tone, sequences, effectssss}) {
     useEffect(() => {
         const sequences = [];
         synths.forEach(synth => sequences.push([]));
-        dispatch(setSequences(sequences));
+        const getSequences = async() => {
+            let sequencesLol = await axios.get('http://localhost:8888/sequence/getOne/5f5559df5246fe0bf40d9e74')
+            dispatch(setSequences(sequencesLol.data.sequence));
+        }
+
+        getSequences();
+        
     }, [])
 
     const PLAYALLLLLLLLLL = () => {
@@ -50,6 +57,10 @@ export function WorkStation({synths, tone, sequences, effectssss}) {
         synth.triggerAttackRelease(value.note, "12n", time, value.velocity)
     }
 
+    const save = () => {
+        axios.patch('http://localhost:8888/sequence/update/5f5559df5246fe0bf40d9e74', {sequence : sequences})
+    }
+
 
 
     return (
@@ -63,6 +74,7 @@ export function WorkStation({synths, tone, sequences, effectssss}) {
             </div>
             <h1>WorkStation (editeur en gros lul)</h1>
             <button onClick={PLAYALLLLLLLLLL}>The Super Mega Button To Run All Those LUl trop bien</button>
+            <button onClick={save}>Enregister</button>
             <SynthList synths={synths} tone={tone}/>
         </div>
     )
@@ -71,6 +83,7 @@ export function WorkStation({synths, tone, sequences, effectssss}) {
 const mapStateToProps = state => ({
     sequences : state.Project.sequences
 })
+
 WorkStation = connect(mapStateToProps)(WorkStation)
 
 export default WorkStation

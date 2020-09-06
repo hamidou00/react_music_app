@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
 export const synthSlice = createSlice({
   name: 'Synth',
   initialState: {
@@ -23,7 +24,7 @@ export const synthSlice = createSlice({
       ["B4"],
       ["C5"],
     ],
-    sequence : require('./initialSequenceData.json'),
+    sequence : [], // require('./initialSequenceData.json'),
     synths : [
 
     ],

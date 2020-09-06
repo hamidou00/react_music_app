@@ -8,10 +8,10 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 mongoose.connection.on("connected", () =>
-  console.log("yay mongodb connected :)")
+  console.log("CONNECTION ESTABLISHED")
 );
 
 mongoose.connection.on("error", () =>
-  console.log("nay db connection error :(")
+  console.log("CONNECTION FAILED hhehehehehehhehe............hehe CHEH")
 );
 

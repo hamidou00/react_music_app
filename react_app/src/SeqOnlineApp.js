@@ -14,9 +14,8 @@ import {getEffects, setOptions, setSynths} from './redux/reducers/synthSlice';
 // A FAIRE : automatiser le chain ligne 44. (le rendre dynamique)
 // Faire en sorte que chaque synth ai ses propres effets
 // chercher comment rendre mon app plus performante
-// Metronome
+// Metronome OK
 // stop et reset et restart le Transport
-
 // Tone Library
 import * as Tone from 'tone';
 Tone.setContext(new Tone.Context({ latencyHint : "playback" }))
