@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector, connect } from 'react-redux';
-import { getBitCrusher, setBitCrusher } from '../../redux/reducers/synthSlice';
+import { getBitCrusher, setBitCrusher, setOneEffect } from '../../redux/reducers/synthSlice';
 
-export default function BitCrucher({synthIndex, synth}) {
+export default function BitCrucher({synthIndex, bitCrusherProps}) {
     const dispatch = useDispatch();
-    const lol = useSelector((state) => getBitCrusher(state, synthIndex))
+    const defaultOptions = useSelector((state) => getBitCrusher(state, synthIndex))
+    const [bitCrusher, setBit] = useState(defaultOptions);
     
-    const [bitCrusher, setBit] = useState(lol);
-
     useEffect(()=> {
-        dispatch(setBitCrusher({synthIndex, bitCrusher}))
-        // synth.set({
-        //     wet : parseInt(bitCrusher.wet),
-        //     bits : parseInt(bitCrusher.wet)
-        // })
+        let effectName = bitCrusherProps.toString();
+        dispatch(setOneEffect({synthIndex, bitCrusher, effectName}))
+        bitCrusherProps.set(bitCrusher)
     });
-
+    
     const handleBitCrucher = (evt) => {
         let bits = evt.target.name == "bits" ? evt.target.value : bitCrusher.bits
         let wet = evt.target.name == "wet" ? evt.target.value : bitCrusher.wet
         setBit( { bits, wet })
-        //console.log(synth.getDestination())
     }
     
     return (
-        <div>
+        <div className="effect">
             <div style={{border : "1px solid black"}}> BitCrusher
-            <p>wet : {bitCrusher.wet} <input onChange={handleBitCrucher} type="range" name="wet" max="1" min="0" step="0.1" value={bitCrusher.wet} /></p>
-            <p>bits : {bitCrusher.bits} <input onChange={handleBitCrucher} type="range" name="bits" max="10" min="0" step="1" value={bitCrusher.bits} /></p>
+            <p>wet : {bitCrusher.wet} <input onChange={handleBitCrucher} type="range" name="wet" max="1" min="0" step="0.1" defaultValue={bitCrusher.wet} /></p>
+            <p>bits : {bitCrusher.bits} <input onChange={handleBitCrucher} type="range" name="bits" max="10" min="4" step="1" defaultValue={bitCrusher.bits} /></p>
             </div>
         </div>
     )

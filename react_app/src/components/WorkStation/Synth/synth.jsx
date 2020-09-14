@@ -3,30 +3,23 @@ import Sequencer from '../Sequencer/sequencer';
 import Effects from './effects';
 import { useSelector, useDispatch, connect } from 'react-redux'
 
-import {setVolume, getEffects, getGammeNotes} from '../../../redux/reducers/synthSlice'
-
-
+import {getEffects, getGammeNotes} from '../../../redux/reducers/synthSlice'
 import Piano from './PianoRoll/Piano';
 
-export default function Synth({synth, tone, synthIndex}) {
+export default function Synth({synth, tone, synthIndex, effects}) {
     const dispatch = useDispatch();
     const gamme = useSelector(getGammeNotes)
-    //console.log(synth.get())
-    const playANote = () => {
-        synth.triggerAttackRelease("D4","8n")
-    }
 
     const changeVolume = (evt) => {
-        dispatch(setVolume(evt.target.value))
-        synth.set({volume: evt.target.value})
+        synth.volume.value = evt.target.value;
     }
 
     return (
         <>
             <div className="Synth1">
-                <h1>Synth {synthIndex}</h1>
-                <button onClick={playANote}>Play a Note</button>
-                <Effects synth={synth} synthIndex={synthIndex}/>
+                <h1>Synth {synthIndex} - {synth.toString()}</h1>
+                Volume <input type="range" name="volume" min="-100" max="5" defaultValue="0" onChange={changeVolume}/>
+                <Effects synth={synth} synthIndex={synthIndex} effects={effects}/>
                 <Piano synth={synth} gamme={gamme}/>
                 <Sequencer synth={synth} tone={tone} synthIndex={synthIndex}/>
             </div>

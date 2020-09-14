@@ -8,18 +8,20 @@ import {
     testAction,
     getTest
 } from '../../redux/reducers/projectSlice';
-import { getBitCrusher } from '../../redux/reducers/synthSlice';
+import { getBitCrusher, getVibrato } from '../../redux/reducers/synthSlice';
 import SynthList from './SynthList';
 import initMatrix from './Sequencer/functions/initMatrix';
 import axios from 'axios';
 
 export function WorkStation({synths, tone, sequences, effectssss}) {
     const dispatch = useDispatch();
-    const bitCrusher = useSelector((state) => getBitCrusher(state, 0))
+    const bitCrusher = useSelector((state) => getBitCrusher(state, 0));
+    const vibrato = useSelector((state) => getVibrato(state, 0));
     useEffect(() => {
-        effectssss.bitCrusher.set(bitCrusher);
+        // effectssss.bitCrusher.set(bitCrusher);
+        // effectssss.vibrato.set(vibrato);
         // synths[0].toMaster();
-        tone.Transport.cancel();
+        // tone.Transport.cancel();
         tone.Transport.start("+0.9");
     });
     
@@ -28,6 +30,7 @@ export function WorkStation({synths, tone, sequences, effectssss}) {
         synths.forEach(synth => sequences.push([]));
         const getSequences = async() => {
             let sequencesLol = await axios.get('http://localhost:8888/sequence/getOne/5f5559df5246fe0bf40d9e74')
+            console.log(sequencesLol.data)
             dispatch(setSequences(sequencesLol.data.sequence));
         }
 
@@ -75,7 +78,7 @@ export function WorkStation({synths, tone, sequences, effectssss}) {
             <h1>WorkStation (editeur en gros lul)</h1>
             <button onClick={PLAYALLLLLLLLLL}>The Super Mega Button To Run All Those LUl trop bien</button>
             <button onClick={save}>Enregister</button>
-            <SynthList synths={synths} tone={tone}/>
+            <SynthList synths={synths} tone={tone} effects={effectssss}/>
         </div>
     )
 }
@@ -87,4 +90,3 @@ const mapStateToProps = state => ({
 WorkStation = connect(mapStateToProps)(WorkStation)
 
 export default WorkStation
-

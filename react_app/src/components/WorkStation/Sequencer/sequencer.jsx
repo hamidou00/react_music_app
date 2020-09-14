@@ -38,15 +38,16 @@ export function Sequencer({effects, tone, synth, synthIndex, sequences, sequence
     const dispatch = useDispatch();
     var [loop, setLoop] = useState(null)
     const [notesMatrix, setNotesMatrix] = useState([]);
+    const [notes, setNotes] = useState([]);
+    
     useEffect(() => {
         setNotesMatrix(initMatrix())
-        
-        //console.log("SEQUENCE TO MATRIX", sequenceToMatrix(sequences[0]))
-    }, [])
+    }, []) // equivalent a un componentDidMount si le tableau est vide (executé qu'une fois)
 
     useEffect(() => {
         if (sequences.length != 0) // selement si sequences reçois les donnée depuis la bdd (async await)
         {
+            if (sequences[synthIndex] != undefined) // si la sequence est undefined, ça arrive si le sequencer du synth est vide et du coup inexistant en bdd
             setNotesMatrix(sequenceToMatrix(sequences[synthIndex])) // introduit les notes de la sequence dans une matrice
         }
         
@@ -95,10 +96,9 @@ export function Sequencer({effects, tone, synth, synthIndex, sequences, sequence
         // sequenceslol[synthIndex] = sequence
         // console.log(sequenceslol)
         // dispatch(setSequences(sequenceslol))
-        
-        
+
         // const sequences1 = [... sequences]
-        
+
         // sequences1.push(notesMatrix)
         // console.log(sequences1)
 
@@ -137,7 +137,7 @@ export function Sequencer({effects, tone, synth, synthIndex, sequences, sequence
         // loop.loopEnd = "2";
         //console.log(loop.toSeconds("0:19"))
     }
-
+    
     const loopCallback = (time) => dispatch(metronomeNext())
 
     const triggerNote = (time, value) => {

@@ -4,7 +4,7 @@ import '../styles/index.css';
 // import Sound from './Sound';
 // import Sampler from "../functions/testSampler";
 // import Loop from "./loop";
-import Header from "./nav/header";
+import Header from "../components/nav/header";
 // import Piano from "./piano";
 // import TestLoop from "./testLoop";
 // import TestLoop2 from "./testLoop2";

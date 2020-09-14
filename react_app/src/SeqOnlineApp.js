@@ -2,7 +2,7 @@ import React from 'react';
 //import ReactDOM from 'react-dom';
 import './styles/index.css';
 import Header from "./components/nav/header";
-// import Home from "./components/Home";
+import Home from "./views/Home";
 import About from "./components/about";
 import NotFound from "./components/NotFound";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -18,9 +18,9 @@ import {getEffects, setOptions, setSynths} from './redux/reducers/synthSlice';
 // stop et reset et restart le Transport
 // Tone Library
 import * as Tone from 'tone';
-Tone.setContext(new Tone.Context({ latencyHint : "playback" }))
+// Tone.setContext(new Tone.Context({ latencyHint : "playback" }))
 
-export default function Layout() {
+export default function SeqOnlineApp() { //Layout
     const dispatch = useDispatch();
     // vibrato : {},
     //   tremolo : {},
@@ -36,13 +36,13 @@ export default function Layout() {
     const Memb4 = new Tone.PolySynth();
 
     // Effects
-    const vibrato = new Tone.Vibrato();
-    const tremolo = new Tone.Tremolo();
-    const feedbackDelay = new Tone.FeedbackDelay();
-    const distortion = new Tone.Distortion();
-    const bitCrusher = new Tone.BitCrusher();
-    const autoWah = new Tone.AutoWah();
-    
+    // const vibrato = new Tone.Vibrato();
+    // const tremolo = new Tone.Tremolo();
+    // const feedbackDelay = new Tone.FeedbackDelay();
+    // const distortion = new Tone.Distortion();
+    // const bitCrusher = new Tone.BitCrusher();
+    // const autoWah = new Tone.AutoWah();
+    // console.log(bitCrusher.get())
 
     Memb.chain(
         Memb2,
@@ -53,27 +53,40 @@ export default function Layout() {
     // const MembraneSynth = new Tone.PolySynth(1, Tone.MembraneSynth).toMaster();
     // MembraneSynth.set(useSelector(getEffects))
     // console.log(MembraneSynth.get())
-    const effectssss = {vibrato, tremolo, feedbackDelay, distortion, bitCrusher, autoWah}
+    const effectssss = [];
     const synths = [Memb, Memb2, Memb3, Memb4];
     const synthsList = [];
+
+
     synths.forEach((synth, i) => {
+
+        const vibrato = new Tone.Vibrato();
+        const tremolo = new Tone.Tremolo();
+        const feedBackDelay = new Tone.FeedbackDelay();
+        const distortion = new Tone.Distortion();
+        const bitCrusher = new Tone.BitCrusher();
+        const autoWah = new Tone.AutoWah();
+
+
         const effects = {
             vibrato: vibrato.get(),
             tremolo: tremolo.get(),
-            feedbackDelay: feedbackDelay.get(),
+            feedBackDelay: feedBackDelay.get(),
             distortion: distortion.get(),
             bitCrusher: bitCrusher.get(),
             autoWah: autoWah.get()
         }
+
+        effectssss.push({ vibrato, tremolo, feedBackDelay, distortion, bitCrusher, autoWah })
 
         synthsList.push({
             id : i,
             effects : effects
         });
         synth.chain(
-            // vibrato,
+            vibrato,
             // tremolo,
-            // feedbackDelay,
+            feedBackDelay,
             // distortion,
             bitCrusher,
             // autoWah,
@@ -87,12 +100,13 @@ export default function Layout() {
     return (
     <Router>
 
-        <Header title="Tone.js Test (y'a rien encore lol)" nav={true}/>
+        <Header title="Tone.js " nav={true}/>
 
         <main className="mainP">
             <Switch>
                 {/* <Route exact path="/" component={Home} /> */}
-                <Route exact path="/"> <Workstation synths={synths} tone={Tone} effectssss={effectssss}/> </Route>
+                <Route exact path="/" component={Home}/>
+                <Route path="/WorkStation"> <Workstation synths={synths} tone={Tone} effectssss={effectssss}/> </Route>
                 <Route path="/about" component={About} />
                 <Route path="*" component={NotFound} />
             </Switch>
@@ -104,3 +118,24 @@ export default function Layout() {
     </Router>
     )
 }
+
+
+
+// const synths = [
+//     {
+//         effects : effectssss,
+//         synth : Memb
+//     }, 
+//     {
+//         effects : effectssss,
+//         synth : Memb2
+//     }, 
+//     {
+//         effects : effectssss,
+//         synth : Memb3
+//     }, 
+//     {
+//         effects : effectssss,
+//         synth : Memb4
+//     }
+// ];
