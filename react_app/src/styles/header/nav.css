@@ -1,0 +1,50 @@
+.navigation{
+    width: 500px;
+    list-style: none;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+
+.navigation div {
+    
+}
+
+.navigation ul li {
+
+}
+
+.navLinks {
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+    height: 20px;
+    width: 500px;
+    text-align: center;
+    font-size: large;
+    line-height: 20px;
+}
+
+.navLinks:hover {
+    color: #f09cdb; /* un houya plus clair que la couleur du .bigButton */
+}
+
+.bigButton {
+    background: #e07dc8;
+    border-radius: 5px;
+    color: white;
+    /* transform: skew(-27.05deg); */
+}
+
+.bigButton:hover {
+    background: #7d97e0;
+    color: white;
+}
+
+.bigButton span {
+    /* position: relative;
+    transform: none;
+    color: red; */
+}

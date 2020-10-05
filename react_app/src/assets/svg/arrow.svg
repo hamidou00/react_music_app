@@ -1,0 +1,18 @@
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" width="33.07" height="28.87" viewBox="0 0 33.07 28.87">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f09cdb;
+      }
+
+      .cls-2 {
+        fill: #7d97e0;
+      }
+    </style>
+  </defs>
+  <title>Sans titre - 5</title>
+  <g id="Arrow">
+    <polygon class="cls-1" points="18.27 28.87 14.66 28.87 29.46 0 33.07 0 18.27 28.87"/>
+    <polygon class="cls-2" points="18.29 28.87 14.68 28.87 0 0 3.61 0 18.29 28.87"/>
+  </g>
+</svg>

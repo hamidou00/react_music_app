@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Sequencer from '../Sequencer/sequencer';
 import Effects from './effects';
-import { useSelector, useDispatch, connect } from 'react-redux'
+import { useSelector, useDispatch, connect } from 'react-redux';
 
-import {getEffects, getGammeNotes} from '../../../redux/reducers/synthSlice'
+import {getEffects, getGammeNotes} from '../../../redux/reducers/synthSlice';
 import Piano from './PianoRoll/Piano';
 
 export default function Synth({synth, tone, synthIndex, effects}) {

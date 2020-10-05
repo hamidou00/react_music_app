@@ -7,6 +7,7 @@ import About from "./components/about";
 import NotFound from "./components/NotFound";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Workstation from './components/WorkStation/WorkStation';
+import AnimationTest from './components/Animation/Test';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {getEffects, setOptions, setSynths} from './redux/reducers/synthSlice';
@@ -88,7 +89,7 @@ export default function SeqOnlineApp() { //Layout
             // tremolo,
             feedBackDelay,
             // distortion,
-            bitCrusher,
+            // bitCrusher,
             // autoWah,
             Tone.Master
         )
@@ -100,7 +101,7 @@ export default function SeqOnlineApp() { //Layout
     return (
     <Router>
 
-        <Header title="Tone.js " nav={true}/>
+        <Header title="SeqOnline" nav={true}/>
 
         <main className="mainP">
             <Switch>
@@ -108,6 +109,7 @@ export default function SeqOnlineApp() { //Layout
                 <Route exact path="/" component={Home}/>
                 <Route path="/WorkStation"> <Workstation synths={synths} tone={Tone} effectssss={effectssss}/> </Route>
                 <Route path="/about" component={About} />
+                <Route path="/animationTest" component={AnimationTest} />
                 <Route path="*" component={NotFound} />
             </Switch>
         </main>

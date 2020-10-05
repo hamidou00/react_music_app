@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 
 export default function nav({routes}) {
     return (
-    <nav>
-        <label><Link to="/">Home</Link></label>
-        {routes.map((route, i) => <label key={i}><Link to={'/'+route}>{route}</Link></label>)}
-    </nav>
+        <nav className="navigation"> 
+            <Link className="navLinks bigButton" to="/WorkStation"><span>Commencer</span></Link>
+            {
+                routes.map((route, i) => (
+                        <Link className="navLinks" key={i} to={'/'+route}>{route}</Link>
+                ))
+            }
+        </nav>
     )
 }

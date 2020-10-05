@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="496" viewBox="0 0 960 496">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #303030;
+      }
+
+      .cls-2 {
+        fill: #f09cdb;
+      }
+
+      .cls-3, .cls-4, .cls-7 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        stroke: #4f4f4f;
+      }
+
+      .cls-3, .cls-7 {
+        stroke-width: 3px;
+      }
+
+      .cls-4 {
+        stroke: #f09cdb;
+        stroke-width: 4px;
+      }
+
+      .cls-5 {
+        fill: url(#Dégradé_sans_nom_6);
+      }
+
+      .cls-6 {
+        fill: url(#Dégradé_sans_nom_73);
+      }
+
+      .cls-7 {
+        stroke: #fff;
+      }
+
+      .cls-8 {
+        fill: url(#Dégradé_sans_nom_6-2);
+      }
+
+      .cls-9 {
+        fill: url(#Dégradé_sans_nom_73-2);
+      }
+
+      .cls-10 {
+        fill: url(#Dégradé_sans_nom_9);
+      }
+
+      .cls-11 {
+        fill: url(#Dégradé_sans_nom_114);
+      }
+
+      .cls-12 {
+        fill: #fff;
+      }
+
+      .cls-13 {
+        fill: #7d97e0;
+      }
+    </style>
+    <radialGradient id="Dégradé_sans_nom_6" data-name="Dégradé sans nom 6" cx="500" cy="367.07" r="82.33" gradientUnits="userSpaceOnUse">
+      <stop offset="0.59"/>
+      <stop offset="1" stop-color="#303030" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="Dégradé_sans_nom_73" data-name="Dégradé sans nom 73" x1="561.31" y1="305.16" x2="444.4" y2="407.27" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1a1a1a"/>
+      <stop offset="1" stop-color="#303030"/>
+    </linearGradient>
+    <radialGradient id="Dégradé_sans_nom_6-2" cx="254.57" cy="367.07" r="82.33" xlink:href="#Dégradé_sans_nom_6"/>
+    <linearGradient id="Dégradé_sans_nom_73-2" x1="315.88" y1="305.16" x2="198.97" y2="407.27" xlink:href="#Dégradé_sans_nom_73"/>
+    <radialGradient id="Dégradé_sans_nom_9" data-name="Dégradé sans nom 9" cx="720.57" cy="366.04" r="82.33" xlink:href="#Dégradé_sans_nom_6"/>
+    <linearGradient id="Dégradé_sans_nom_114" data-name="Dégradé sans nom 114" x1="781.89" y1="304.12" x2="664.97" y2="406.23" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5797e0"/>
+      <stop offset="0.13" stop-color="#5d97e0"/>
+      <stop offset="0.3" stop-color="#6d98df"/>
+      <stop offset="0.5" stop-color="#8999de"/>
+      <stop offset="0.71" stop-color="#af9add"/>
+      <stop offset="0.93" stop-color="#e09bdc"/>
+      <stop offset="1" stop-color="#f09cdb"/>
+    </linearGradient>
+  </defs>
+  <title>Fichier 1</title>
+  <g id="Calque_2" data-name="Calque 2">
+    <g id="Calque_1-2" data-name="Calque 1">
+      <g id="Slide">
+        <g id="Machine">
+          <g id="Back">
+            <rect id="Back-2" data-name="Back" class="cls-1" x="102.02" y="200.53" width="755.96" height="295.47" rx="3.16"/>
+            <path id="Back-3" data-name="Back" class="cls-2" d="M844.5,496H107.81a3.13,3.13,0,0,1-3.13-3.14V204.24a3.13,3.13,0,0,1,3.13-3.13H844.5a3.13,3.13,0,0,1,3.13,3.13V492.86A3.14,3.14,0,0,1,844.5,496Z"/>
+            <rect id="Back-4" data-name="Back" class="cls-1" x="102.02" y="200.53" width="735.25" height="295.47" rx="3.12"/>
+          </g>
+          <g id="Button2Test">
+            <path id="Jauge_back" data-name="Jauge back" class="cls-3" d="M463.75,449.4c-34.93-14.6-59.54-49.67-59.54-90.61,0-54.05,42.88-97.86,95.79-97.86s95.79,43.81,95.79,97.86c0,40.94-24.62,76-59.55,90.61"/>
+            <path id="Jauge" class="cls-4" d="M463.61,449.24c-34.85-14.59-59.4-49.63-59.4-90.54,0-54,42.78-97.77,95.55-97.77"/>
+            <circle id="Ombre" class="cls-5" cx="500" cy="367.07" r="82.33"/>
+            <circle id="Liserais_Lumineux" data-name="Liserais Lumineux" class="cls-6" cx="500" cy="358.71" r="72.29"/>
+            <circle id="Centre" class="cls-1" cx="500" cy="358.71" r="70.62"/>
+            <line id="Indicateur" class="cls-7" x1="499.74" y1="297.69" x2="499.74" y2="313.74"/>
+          </g>
+          <g id="Button2Test-2" data-name="Button2Test">
+            <path id="Jauge_back-2" data-name="Jauge back" class="cls-3" d="M218.32,449.4c-34.93-14.6-59.54-49.67-59.54-90.61,0-54.05,42.88-97.86,95.79-97.86s95.79,43.81,95.79,97.86c0,40.94-24.62,76-59.55,90.61"/>
+            <path id="Jauge-2" data-name="Jauge" class="cls-4" d="M218.18,449.24c-34.85-14.59-59.4-49.63-59.4-90.54,0-54,42.78-97.77,95.56-97.77"/>
+            <circle id="Ombre-2" data-name="Ombre" class="cls-8" cx="254.57" cy="367.07" r="82.33"/>
+            <circle id="Liserais_Lumineux-2" data-name="Liserais Lumineux" class="cls-9" cx="254.57" cy="358.71" r="72.29"/>
+            <circle id="Centre-2" data-name="Centre" class="cls-1" cx="254.57" cy="358.71" r="70.62"/>
+            <line id="Indicateur-2" data-name="Indicateur" class="cls-7" x1="254.31" y1="297.69" x2="254.31" y2="313.74"/>
+          </g>
+          <circle class="cls-10" cx="720.57" cy="366.04" r="82.33"/>
+          <circle class="cls-11" cx="720.57" cy="357.67" r="72.29"/>
+          <circle class="cls-1" cx="720.57" cy="357.67" r="70.62"/>
+          <line id="Indicateur-3" data-name="Indicateur" class="cls-7" x1="720.31" y1="296.65" x2="720.31" y2="312.71"/>
+        </g>
+        <g id="Logo">
+          <g id="Formes">
+            <g id="Note">
+              <polygon class="cls-12" points="17.44 122 44.44 122 27 156 0 156 17.44 122"/>
+              <polygon class="cls-12" points="105.44 122 132.44 122 115 156 88 156 105.44 122"/>
+              <polygon class="cls-12" points="103.23 21 117.23 21 48 156 34 156 103.23 21"/>
+              <polygon class="cls-12" points="191.23 21 205.23 21 136 156 122 156 191.23 21"/>
+              <polygon class="cls-12" points="114 0 216 0 208.82 14 106.82 14 114 0"/>
+            </g>
+            <g id="Barres">
+              <polygon class="cls-2" points="218.23 21 232.23 21 163 156 149 156 218.23 21"/>
+              <polygon class="cls-12" points="238.23 21 252.23 21 183 156 169 156 238.23 21"/>
+              <polygon class="cls-13" points="258.23 21 272.23 21 203 156 189 156 258.23 21"/>
+              <polygon class="cls-12" points="229 0 635 0 627.82 14 221.82 14 229 0"/>
+            </g>
+          </g>
+          <g id="SeqOnline">
+            <g id="S">
+              <polygon class="cls-12" points="285.75 20 299.75 20 272.05 74 258.05 74 285.75 20"/>
+              <polygon class="cls-12" points="306 88 320 88 292.31 142 278.31 142 306 88"/>
+              <polygon class="cls-12" points="291.18 142 284 156 216 156 223.18 142 291.18 142"/>
+              <polygon class="cls-12" points="326.05 74 318.87 88 250.87 88 258.05 74 326.05 74"/>
+            </g>
+            <g id="E">
+              <polygon class="cls-12" points="367.23 21 381.23 21 312 156 298 156 367.23 21"/>
+              <polygon class="cls-12" points="373.18 142 366 156 298 156 305.18 142 373.18 142"/>
+              <polygon class="cls-12" points="394.05 74 386.87 88 332.87 88 340.05 74 394.05 74"/>
+            </g>
+            <g id="Q">
+              <polygon class="cls-12" points="502.23 21 516.23 21 447 156 433 156 502.23 21"/>
+              <polygon class="cls-12" points="448.23 21 462.23 21 393 156 379 156 448.23 21"/>
+              <polygon class="cls-12" points="454.18 142 447 156 379 156 386.18 142 454.18 142"/>
+              <polygon class="cls-12" points="451.13 68 465.13 68 451.28 95 437.28 95 451.13 68"/>
+            </g>
+            <g id="O">
+              <polygon class="cls-12" points="529.23 21 543.23 21 474 156 460 156 529.23 21"/>
+              <polygon class="cls-12" points="583.23 21 597.23 21 528 156 514 156 583.23 21"/>
+              <polygon class="cls-12" points="532.13 68 546.13 68 532.28 95 518.28 95 532.13 68"/>
+              <polygon class="cls-12" points="535.18 142 528 156 460 156 467.18 142 535.18 142"/>
+            </g>
+            <g id="N">
+              <polygon class="cls-12" points="621 0 635 0 555 156 541 156 621 0"/>
+              <polygon class="cls-12" points="664.23 21 678.23 21 609 156 595 156 664.23 21"/>
+              <polygon class="cls-12" points="635.04 0 621.47 0 595.73 156 609.3 156 635.04 0"/>
+            </g>
+            <g id="L">
+              <polygon class="cls-12" points="695.82 14 709.82 14 637 156 623 156 695.82 14"/>
+              <polygon class="cls-12" points="716 0 708.82 14 667.82 14 675 0 716 0"/>
+              <polygon class="cls-12" points="698.18 142 691 156 623 156 630.18 142 698.18 142"/>
+            </g>
+            <g id="I">
+              <polygon class="cls-12" points="773.23 21 787.23 21 718 156 704 156 773.23 21"/>
+              <polygon class="cls-12" points="825 0 817.82 14 776.82 14 784 0 825 0"/>
+            </g>
+            <g id="N-2" data-name="N">
+              <polygon class="cls-12" points="811 0 825 0 745 156 731 156 811 0"/>
+              <polygon class="cls-12" points="865 0 879 0 799 156 785 156 865 0"/>
+              <polygon class="cls-12" points="824.58 0 811.01 0 785.27 156 798.84 156 824.58 0"/>
+            </g>
+            <g id="E-2" data-name="E">
+              <polygon class="cls-12" points="881.23 21 895.23 21 826 156 812 156 881.23 21"/>
+              <polygon class="cls-12" points="857.82 14 865 0 960 0 952.82 14 857.82 14"/>
+              <polygon class="cls-12" points="812 156 819.18 142 887.18 142 880 156 812 156"/>
+              <polygon class="cls-12" points="846.87 88 854.05 74 908.05 74 900.87 88 846.87 88"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

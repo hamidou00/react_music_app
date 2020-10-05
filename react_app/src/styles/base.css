@@ -1,20 +1,12 @@
-.header{
-    width: 100%;
-    background: rgb(123, 212, 171);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-
 .pointer{
     cursor: pointer;
 }
 
-
 .main{
     margin: auto;
 }
+
+
 
 .sectionTests{
     display: flex;

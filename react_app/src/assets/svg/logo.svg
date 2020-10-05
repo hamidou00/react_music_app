@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="156" viewBox="0 0 960 156">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #f09cdb;
+      }
+
+      .cls-3 {
+        fill: #7d97e0;
+      }
+    </style>
+  </defs>
+  <title>Fichier 2</title>
+  <g id="Calque_2" data-name="Calque 2">
+    <g id="Calque_1-2" data-name="Calque 1">
+      <g id="Slide">
+        <g id="Logo">
+          <g id="Formes">
+            <g id="Note">
+              <polygon class="cls-1" points="17.44 122 44.44 122 27 156 0 156 17.44 122"/>
+              <polygon class="cls-1" points="105.44 122 132.44 122 115 156 88 156 105.44 122"/>
+              <polygon class="cls-1" points="103.23 21 117.23 21 48 156 34 156 103.23 21"/>
+              <polygon class="cls-1" points="191.23 21 205.23 21 136 156 122 156 191.23 21"/>
+              <polygon class="cls-1" points="114 0 216 0 208.82 14 106.82 14 114 0"/>
+            </g>
+            <g id="Barres">
+              <polygon class="cls-2" points="218.23 21 232.23 21 163 156 149 156 218.23 21"/>
+              <polygon class="cls-1" points="238.23 21 252.23 21 183 156 169 156 238.23 21"/>
+              <polygon class="cls-3" points="258.23 21 272.23 21 203 156 189 156 258.23 21"/>
+              <polygon class="cls-1" points="229 0 635 0 627.82 14 221.82 14 229 0"/>
+            </g>
+          </g>
+          <g id="SeqOnline">
+            <g id="S">
+              <polygon class="cls-1" points="285.75 20 299.75 20 272.05 74 258.05 74 285.75 20"/>
+              <polygon class="cls-1" points="306 88 320 88 292.31 142 278.31 142 306 88"/>
+              <polygon class="cls-1" points="291.18 142 284 156 216 156 223.18 142 291.18 142"/>
+              <polygon class="cls-1" points="326.05 74 318.87 88 250.87 88 258.05 74 326.05 74"/>
+            </g>
+            <g id="E">
+              <polygon class="cls-1" points="367.23 21 381.23 21 312 156 298 156 367.23 21"/>
+              <polygon class="cls-1" points="373.18 142 366 156 298 156 305.18 142 373.18 142"/>
+              <polygon class="cls-1" points="394.05 74 386.87 88 332.87 88 340.05 74 394.05 74"/>
+            </g>
+            <g id="Q">
+              <polygon class="cls-1" points="502.23 21 516.23 21 447 156 433 156 502.23 21"/>
+              <polygon class="cls-1" points="448.23 21 462.23 21 393 156 379 156 448.23 21"/>
+              <polygon class="cls-1" points="454.18 142 447 156 379 156 386.18 142 454.18 142"/>
+              <polygon class="cls-1" points="451.13 68 465.13 68 451.28 95 437.28 95 451.13 68"/>
+            </g>
+            <g id="O">
+              <polygon class="cls-1" points="529.23 21 543.23 21 474 156 460 156 529.23 21"/>
+              <polygon class="cls-1" points="583.23 21 597.23 21 528 156 514 156 583.23 21"/>
+              <polygon class="cls-1" points="532.13 68 546.13 68 532.28 95 518.28 95 532.13 68"/>
+              <polygon class="cls-1" points="535.18 142 528 156 460 156 467.18 142 535.18 142"/>
+            </g>
+            <g id="N">
+              <polygon class="cls-1" points="621 0 635 0 555 156 541 156 621 0"/>
+              <polygon class="cls-1" points="664.23 21 678.23 21 609 156 595 156 664.23 21"/>
+              <polygon class="cls-1" points="635.04 0 621.47 0 595.73 156 609.3 156 635.04 0"/>
+            </g>
+            <g id="L">
+              <polygon class="cls-1" points="695.82 14 709.82 14 637 156 623 156 695.82 14"/>
+              <polygon class="cls-1" points="716 0 708.82 14 667.82 14 675 0 716 0"/>
+              <polygon class="cls-1" points="698.18 142 691 156 623 156 630.18 142 698.18 142"/>
+            </g>
+            <g id="I">
+              <polygon class="cls-1" points="773.23 21 787.23 21 718 156 704 156 773.23 21"/>
+              <polygon class="cls-1" points="825 0 817.82 14 776.82 14 784 0 825 0"/>
+            </g>
+            <g id="N-2" data-name="N">
+              <polygon class="cls-1" points="811 0 825 0 745 156 731 156 811 0"/>
+              <polygon class="cls-1" points="865 0 879 0 799 156 785 156 865 0"/>
+              <polygon class="cls-1" points="824.58 0 811.01 0 785.27 156 798.84 156 824.58 0"/>
+            </g>
+            <g id="E-2" data-name="E">
+              <polygon class="cls-1" points="881.23 21 895.23 21 826 156 812 156 881.23 21"/>
+              <polygon class="cls-1" points="857.82 14 865 0 960 0 952.82 14 857.82 14"/>
+              <polygon class="cls-1" points="812 156 819.18 142 887.18 142 880 156 812 156"/>
+              <polygon class="cls-1" points="846.87 88 854.05 74 908.05 74 900.87 88 846.87 88"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
