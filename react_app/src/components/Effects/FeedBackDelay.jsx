@@ -31,10 +31,6 @@ export default function FeedBackDelay({synthIndex, feedBackDelayProps}) {
         </div>
     )
 }
-
-
-
-
 // const mapStateToProps = state => ({
 //     wet : state.Synth.synths[synthIndex].effects.bitCrusher.wet
 // })
