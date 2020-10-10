@@ -8,10 +8,11 @@ gsap.registerPlugin(CSSRulePlugin);
 export default function Test() {
     const content = useRef(null);
     const anime1 = useRef(null);
+    var tl = gsap.timeline({defaults:{duration: 1, opacity: 0}});
     // const content = useRef(null);
     // const content = useRef(null);
     // const content = useRef(null);
-
+    
     useEffect(() => {
         // gsap.from(content.current, {
         //     autoAlpha: 0,
@@ -19,7 +20,7 @@ export default function Test() {
         //     delay: 1
         // });
         // gsap.set("main2", {autoAlpha: 0});
-        var tl = gsap.timeline({defaults:{duration: 1, opacity: 0}});
+        
         var rule = CSSRulePlugin.getRule(".anim1 span:after");
         tl.from(".avoidAnimationClipping", {autoAlpha: 0})
         .from(".anim1", {y:-50, stagger: .6})
@@ -27,6 +28,10 @@ export default function Test() {
             .from(".aside1", {backgroundPosition: '200px 0px', opacity: 0}, "-=1.5")
             .from(".img1", {y:30, opacity: 0}, "-=.5")
     }, []);
+
+    const reverse = (timeline) => {
+        timeline.reverse();
+    }
 
     return (
         <div className="body2 avoidAnimationClipping">
@@ -42,7 +47,7 @@ export default function Test() {
                     <img class="swirl img1" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2621168/swirl.png" alt="Swirl Graphic"/>
                 </div>
             </aside>
+            <button onClick={() => reverse(tl)}>REVERSE BABY</button>
         </div>
-        
     )
 }

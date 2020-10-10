@@ -12,6 +12,7 @@ import { getBitCrusher, getVibrato } from '../../redux/reducers/synthSlice';
 import SynthList from './SynthList';
 import initMatrix from './Sequencer/functions/initMatrix';
 import axios from 'axios';
+import Button from '../Animation/SVGS/Button_Slide';
 
 export function WorkStation({synths, tone, sequences, effectssss}) {
     const dispatch = useDispatch();
@@ -76,6 +77,7 @@ export function WorkStation({synths, tone, sequences, effectssss}) {
                 <div>Sequencer</div>
             </div>
             <h1>WorkStation (editeur en gros lul)</h1>
+            <Button />
             <button onClick={PLAYALLLLLLLLLL}>The Super Mega Button To Run All Those LUl trop bien</button>
             <button onClick={save}>Enregister</button>
             <SynthList synths={synths} tone={tone} effects={effectssss}/>

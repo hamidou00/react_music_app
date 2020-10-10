@@ -6,7 +6,8 @@ export default function header({title, nav}) {
     const allRoutes = [
         "About",
         "Contact",
-        "AnimationTest"
+        "AnimationTest",
+        "AnimationTest2"
     ]
     return (
         <header className="header">

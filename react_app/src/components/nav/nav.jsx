@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function nav({routes}) {
     return (
-        <nav className="navigation"> 
+        <nav className="navigation">
             <Link className="navLinks bigButton" to="/WorkStation"><span>Commencer</span></Link>
             {
                 routes.map((route, i) => (

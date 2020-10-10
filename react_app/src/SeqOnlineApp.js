@@ -8,6 +8,7 @@ import NotFound from "./components/NotFound";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Workstation from './components/WorkStation/WorkStation';
 import AnimationTest from './components/Animation/Test';
+import AnimationTest2 from './components/Animation/Test2';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {getEffects, setOptions, setSynths} from './redux/reducers/synthSlice';
@@ -110,6 +111,7 @@ export default function SeqOnlineApp() { //Layout
                 <Route path="/WorkStation"> <Workstation synths={synths} tone={Tone} effectssss={effectssss}/> </Route>
                 <Route path="/about" component={About} />
                 <Route path="/animationTest" component={AnimationTest} />
+                <Route path="/animationTest2" component={AnimationTest2} />
                 <Route path="*" component={NotFound} />
             </Switch>
         </main>

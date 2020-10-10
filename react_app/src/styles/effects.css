@@ -9,3 +9,109 @@
     border: 1px solid black;
     padding: 5px;
 }
+
+.allEff {
+    /* width: 100%; */
+    border: 10px solid black;
+    padding: 50px;
+    /* background: black; */
+}
+
+.testflex{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.testflex div{
+    height: 20px;
+    width: 20px;
+    background: blue;
+    border: 1px solid black;
+}
+
+
+
+.effectMachine {
+    height: 500px;
+    max-width: 750px;
+    min-width: 650px;
+    position: relative;
+    background: red;
+}
+
+.effectBack{
+    height: 300px;
+    /* max-width: 750px; */
+    position:absolute;
+    border-radius: 5px;
+    min-width: 25px;
+    width: 100%;
+    /* border: 5px solid black; */
+}
+
+#machineBack_1{
+    background : #303030;
+    width: 100%;
+}
+
+#machineBack_2{
+    background : #f09cdb;
+    width: calc(100% - 10px);
+}
+
+#machineBack_3{
+    background : #303030;
+    width: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+}
+
+.effect_cardHead{
+    /* background: green; */
+    height: 50px;
+}
+
+.machineTitle{
+    height: 25px;
+    margin-top: 15px;
+    float: right;
+    background : #f09cdb;
+    width: 70px;
+    text-align: center;
+    padding: 0px 15px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    color: white;
+}
+
+.cardBody{
+    /* background: yellow; */
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.buttonSlide{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sinType{
+    height: 20px;
+    width: 50px;
+    background: coral;
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+    border-radius: 2px;
+    padding: 0px 2px;
+}
+
+.machineTitle {
+
+}
